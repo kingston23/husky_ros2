@@ -37,7 +37,7 @@ Gazebo plugins extend the simulation environment by adding sensors, actuators, a
 Topics are the primary communication mechanism in ROS2, allowing nodes to publish and subscribe to streams of data such as joint states and camera images. You'll learn to interact with these topics to command joint positions and visualize sensor data.
 
 
-## Note
+### Note
 
 These instructions are for modern **Gazebo (Harmonic)**, not Gazebo Classic.
 
@@ -77,25 +77,6 @@ sudo apt install \
   ros-jazzy-tf-transformations
 ```
   
-Short descriptions for each custom package in Husky ROS2 project:
-
-### husky_description``
-Contains the URDF files and 3D meshes that define the physical structure, joints, and visual appearance of the pan-tilt camera system for simulation and visualization.
-
-### husky_bringup
-Provides launch files that automate the startup of the robot description, controllers, and Gazebo simulation environment, making it easy to bring up the complete system with a single command.
-
-
-###husky_control
-Implements example ROS2 nodes or scripts for sending joint commands and demonstrating custom control logic for the pan and tilt movements of the camera system.
-
-### husky_gazebo
-Implements example ROS2 nodes or scripts for sending joint commands and demonstrating custom control logic for the pan and tilt movements of the camera system.
-
-### husky_viz
-Implements example ROS2 nodes or scripts for sending joint commands and demonstrating custom control logic for the pan and tilt movements of the camera system.
-
-
 ## Make the Workspace and Sourcing the Setup Script
 
 To build your ROS2 workspace and set up your environment, follow these steps:
@@ -121,23 +102,41 @@ To build your ROS2 workspace and set up your environment, follow these steps:
     source install/setup.bash
 ```
 
-Run source the setup script in every new terminal before using your workspace.
+Run source the setup script in every new terminal before using your workspace or add workspace in ~/.bashrc.
 
-## Note
+### Note
    If you’re new to ROS2 workspaces or want a detailed step-by-step guide, see the official ROS2 tutorial: `Creating a workspace (ROS2 Documentation) <https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html>`__.
 
-# Husky Description (URDF Modeling)
+---
+
+## Husky Description
+
+Short descriptions for each custom package in Husky ROS2 project:
+
+### husky_description
+Contains the URDF files and 3D meshes that define the physical structure, joints, and visual appearance of the pan-tilt camera system for simulation and visualization.
+
+### husky_bringup
+Provides launch files that automate the startup of the robot description, controllers, and Gazebo simulation environment, making it easy to bring up the complete system with a single command.
+
+### husky_control
+Implements example ROS2 nodes or scripts for sending joint commands and demonstrating custom control logic for the pan and tilt movements of the camera system.
+
+### husky_gazebo
+Implements example ROS2 nodes or scripts for sending joint commands and demonstrating custom control logic for the pan and tilt movements of the camera system.
+
+### husky_viz
+Implements example ROS2 nodes or scripts for sending joint commands and demonstrating custom control logic for the pan and tilt movements of the camera system.
 
 
 ## Enabling Control with ros2_control
-
 
 The joint_state_broadcaster is a special controller that publishes the current state of all robot joints (position, velocity, effort) as ROS messages (specifically, the joint_states topic). It reads the state interfaces from the hardware (via ros2_control) and broadcasts them, making the information available for visualization, logging, and other nodes in the system
 
 To control Husky mobile robot in simulation (Gazebo), we use the `ros2_control` framework. This enables real-time joint control using controllers defined in both the URDF and external configuration files.
 
-### Launch file 
 
+## Launch file 
 
 This code is a ROS 2 launch file written in Python, designed to launch an older Husky robot model in Gazebo Sim using ROS 2
 
@@ -164,8 +163,6 @@ These allow you to customize your launch:
       DeclareLaunchArgument('world', default_value='warehouse', description='Gazebo World'),
       DeclareLaunchArgument('use_sim_time', default_value='true', choices=['true', 'false'], description='use_sim_time')]
 ```
-
-
 
 Fetches the installed path of the husky_gazebo package:
 
@@ -232,7 +229,7 @@ This constructs the complete launch description and returns it to ROS2:
 ```
    
 
-### Controller Configuration (YAML)
+## Controller Configuration (YAML)
 
 
 The actual controllers are defined in a `control.yaml` file located in the `husky_control/config/` directory. We use one `DiffDriveController`.
@@ -313,8 +310,6 @@ The actual controllers are defined in a `control.yaml` file located in the `husk
 ```
 
 ## Launching the Controllers
-
-
 
 To start the controllers when launching the simulation, we use the `controller_manager` spawner node. This is typically done inside your `gazebo.launch.py` launch file.
 
@@ -397,9 +392,7 @@ To start the controllers when launching the simulation, we use the `controller_m
 It is essential that the `JointStateBroadcaster` is fully started before the pan and tilt controllers. This is done using an event handler that triggers after the `spawn_joint_state_broadcaster` completes:
 
 
-
 ## Publish velocity to topic
-
 
 Gazebo camera plugin details
 
@@ -424,7 +417,7 @@ Publisher count: 1
 Subscription count: 1
 ```
 
-## Twist to TwistStamped
+### Twist to TwistStamped
 
 
 If cmd_vel topic has msg type `TwistStamped` you need to convert Twist to `TwistStamped` like this:
@@ -484,7 +477,6 @@ Launch keyboard control in terminal 2:
    python3 twistToTwistStamped.py 
 ```
 
-
 Gazebo visualization:
 
 Rviz visualization:
@@ -511,15 +503,14 @@ See if msg is published on topic:
 Husky should move in circle like this:
 [Husky Demo](fig/husky_indoor_circle.mp4)
 
+---
 
-Further Resources
------------------
+## Further Resources
 
 Once Gazebo is installed and is all clear on the last quick test, you can move to the `Gazebo tutorials <https://gazebosim.org/docs/harmonic/tutorials>`__ to try out building your own robot!
 
 If you use a different version of Gazebo than the recommended version, make sure to use the dropdown to select the correct version of documentation.
 
-Summary
--------
+## Summary
 
 In this tutorial, you have installed Gazebo and set-up your workspace to start with the `Gazebo tutorials <https://gazebosim.org/docs/harmonic/tutorials>`__.
