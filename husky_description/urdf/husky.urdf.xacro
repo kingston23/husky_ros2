@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
+  <!-- robot name parameter -->
+  <!-- <xacro:arg name="name" default="" /> -->
+
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="gazebo_controllers" default="$(find husky_control)/config/control.yaml" />
+
+  <xacro:include filename="$(find husky_description)/urdf/husky_macro.urdf.xacro" />
+
+  <!-- Load husky description -->
+  <xacro:husky prefix="$(arg prefix)" />
+
+
+  <xacro:if value="$(arg is_sim)">
+
+    <gazebo>
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(arg gazebo_controllers)</parameters>
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="$(arg prefix)imu_link">
+      <sensor name="$(arg prefix)imu_sensor" type="imu">
+        <gz_frame_id>imu_link</gz_frame_id>
+        <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu">
+                      <!-- <topic>imu_data</topic> -->
+          <ros>
+            <namespace>$(arg prefix)</namespace>
+            <remapping>~/out:=imu/data</remapping>
+          </ros>
+          <initial_orientation_as_reference>false</initial_orientation_as_reference>
+        </plugin>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+    </gazebo>
+
+    <!-- <gazebo reference="$(arg prefix)gps_link">
+      <sensor name="$(arg prefix)gps_sensor" type="gps">
+      <gz_frame_id>gps_link</gz_frame_id>
+      <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat">
+          <ros>
+            <namespace>$(arg prefix)</namespace>
+            <remapping>~/out:=gps/fix</remapping>
+          </ros>
+        </plugin>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+        <visualize>true</visualize>
+      </sensor>
+    </gazebo> -->
+
+
+    <gazebo>
+      <plugin filename="gz-sim-pose-publisher-system" name="gz::sim::systems::PosePublisher">
+        <publish_link_pose>true</publish_link_pose>
+        <publish_nested_model_pose>true</publish_nested_model_pose>
+        <use_pose_vector_msg>true</use_pose_vector_msg>
+        <update_frequency>50</update_frequency>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+  <!-- Optional custom includes. -->
+  <xacro:include filename="$(arg urdf_extras)" />
+
+</robot>

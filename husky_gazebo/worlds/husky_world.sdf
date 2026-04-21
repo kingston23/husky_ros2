@@ -1,0 +1,482 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="world_demo">
+    <physics name="1ms" type="ode">
+      <max_step_size>0.05</max_step_size>
+      <real_time_update_rate>10</real_time_update_rate>
+
+      <real_time_factor>1.0</real_time_factor>
+
+      <!-- <real_time_update_rate>1000</real_time_update_rate>
+      <max_step_size>0.001</max_step_size> -->
+    </physics>
+
+
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+ <!--    
+     <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>--> 
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>  
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>45.800544</latitude_deg>
+      <longitude_deg>15.970823</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.8 1</background>
+      <shadows>false</shadows>
+    </scene>
+    
+     <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch001</name>
+      <pose>30 0 0.01 0 -0 0</pose>
+    </include>   
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch00</name>
+      <pose>15 0 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch</name>
+      <pose>0 0 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch_1</name>
+      <pose>30 15 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch_2</name>
+      <pose>15 15 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch_3</name>
+      <pose>0 15 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch_01</name>
+      <pose>30 -15 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch_02</name>
+      <pose>15 -15 0.01 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://grasspatch</uri>
+      <name>grasspatch_03</name>
+      <pose>0 -15 0.01 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_15</name>
+      <pose>8.56424 -7.36834 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://PineTree</uri>
+      <name>Pine Tree_16</name>
+      <pose>7.04987 -9.30259 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_17</name>
+      <pose>4.64341 -9.56548 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://PineTree</uri>
+      <name>Pine Tree_18</name>
+      <pose>2.39497 -9.53658 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_19</name>
+      <pose>-0.978211 -9.12685 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://PineTree</uri>
+      <name>Pine Tree_20</name>
+      <pose>-6.60386 -9.4906 0 0 -0 0</pose>
+    </include>
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_21</name>
+      <pose>-11.7872 -9.60952 0 0 -0 0</pose>
+    </include>
+
+
+
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_19_2</name>
+      <pose>-1.7952 -4.79736 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_19_10</name>
+      <pose>21.3008 12.6766 0 0 -0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://OakTree</uri>
+      <name>Pine Tree_19_12</name>
+      <pose>13.1837 8.1871 0 0 -0 0</pose>
+    </include>
+
+
+ 
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+          </plane>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>100 100</size>
+          </plane>
+        </geometry>
+        <material>
+          <ambient>0.8 0.8 0.8 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+          <specular>0.8 0.8 0.8 1</specular>
+        </material>
+        </visual>
+      </link>
+    </model>
+
+    
+    <!-- field of plants-->
+    <!-- 1. row -->
+    <include>
+        <name>plant_1</name>
+        <pose>3.10853 0.123827 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_2</name>
+        <pose>3.63047 0.120824 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_3</name>
+        <pose>4.20638 0.049733 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_4</name>
+        <pose>4.86191 0.241713 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_5</name>
+        <pose>5.71837 0.091423 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_6</name>
+        <pose>6.96631 0.247548 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_7</name>
+        <pose>7.97895 0.101523 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_8</name>
+        <pose>8.22023 0.124822 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_9</name>
+        <pose>8.67369 0.138078 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_10</name>
+        <pose>9.71692 0.149412 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_11</name>
+        <pose>10.76 0.160802 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_12</name>
+        <pose>11.10853 0.123827 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_13</name>
+        <pose>12.63047 0.120824 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_14</name>
+        <pose>13.20638 0.049733 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_15</name>
+        <pose>14.6191 0.241713 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_16</name>
+        <pose>15.1837 0.091423 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_17</name>
+        <pose>15.97895 0.101523 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_18</name>
+        <pose>16.72023 0.124822 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_19</name>
+        <pose>17.67369 0.138078 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_20</name>
+        <pose>18.71692 0.149412 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+
+        
+     <!-- 2. row -->   
+    <include>
+        <name>plant_21</name>
+        <pose>3.10853 2.123827 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_22</name>
+        <pose>3.63047 2.120824 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_23</name>
+        <pose>4.20638 2.049733 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_24</name>
+        <pose>4.86191 2.241713 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_25</name>
+        <pose>5.71837 2.091423 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_26</name>
+        <pose>6.96631 2.247548 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_27</name>
+        <pose>7.97895 2.101523 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_28</name>
+        <pose>7.72023 2.124822 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_29</name>
+        <pose>8.67369 2.138078 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_30</name>
+        <pose>9.71692 2.149412 0.111949 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_031</name>
+        <pose>10.76 2.160802 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_032</name>
+        <pose>11.10853 2.123827 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_033</name>
+        <pose>12.63047 2.120824 0 0 -0 0</pose>
+        <uri>model://small_plant</uri>
+    </include>
+    <include>
+        <name>plant_034</name>
+        <pose>13.20638 2.049733 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_035</name>
+        <pose>14.6191 2.241713 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_036</name>
+        <pose>15.1837 2.091423 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_037</name>
+        <pose>15.97895 2.101523 0.111949 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_038</name>
+        <pose>16.72023 2.124822 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_039</name>
+        <pose>17.67369 2.138078 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_040</name>
+        <pose>18.71692 2.149412 0.111949 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>    
+    
+        <!-- 3. row -->   
+    <include>
+        <name>plant_31</name>
+        <pose>3.10853 4.123827 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_32</name>
+        <pose>3.63047 4.120824 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_33</name>
+        <pose>4.20638 4.049733 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_34</name>
+        <pose>4.86191 4.241713 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_35</name>
+        <pose>5.71837 4.091423 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_36</name>
+        <pose>6.96631 4.247548 0.111949 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_37</name>
+        <pose>7.97895 4.101523 0.111949 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_38</name>
+        <pose>7.72023 4.124822 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_39</name>
+        <pose>8.67369 4.138078 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_40</name>
+        <pose>9.71692 4.149412 0.111949 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_041</name>
+        <pose>10.76 4.160802 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+     <include>
+        <name>plant_042</name>
+        <pose>11.10853 4.123827 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_043</name>
+        <pose>12.63047 4.120824 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_044</name>
+        <pose>13.20638 4.049733 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_045</name>
+        <pose>14.6191 4.241713 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_046</name>
+        <pose>15.1837 4.091423 0 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+    <include>
+        <name>plant_047</name>
+        <pose>15.97895 4.101523 0.111949 0 -0 0</pose>
+        <uri>model://big_plant</uri>
+    </include>
+  
+
+  </world>
+</sdf>
