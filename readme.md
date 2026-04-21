@@ -423,7 +423,6 @@ Subscription count: 1
 If cmd_vel topic has msg type `TwistStamped` you need to convert Twist to `TwistStamped` like this:
 
 ```
-   # Imports
    import rclpy
    from rclpy.node import Node
    from geometry_msgs.msg import Twist, TwistStamped
@@ -465,22 +464,20 @@ If cmd_vel topic has msg type `TwistStamped` you need to convert Twist to `Twist
 
 ## Testing the System 
 
-Launch example in terminal 1.:
+Launch example in **terminal 1**:
 
 ```
    ros2 launch husky_gazebo husky.launch.py 
 ```
 
-Launch keyboard control in terminal 2:
+Launch keyboard control in **terminal 2**:
 ```
    cd husky_withoutSensors_ws/src/husky_gazebo/launch
    python3 twistToTwistStamped.py 
 ```
 
 Gazebo visualization:
-
-Rviz visualization:
-
+![alt text](./fig/gazebo.png)
 
 Open a new terminal and write to control Husky with keyboard:
 
@@ -488,7 +485,8 @@ Open a new terminal and write to control Husky with keyboard:
     ros2 run teleop_twist_keyboard teleop_twist_keyboard 
 ```
 
-List all topics with ros2 topic list
+List all topics with ros2 topic list:
+
 ![alt text](./fig/allTopics.png)
 
 Open a new terminal and write to check husky_velocity_controller assigning velocity:

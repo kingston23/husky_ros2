@@ -2,15 +2,15 @@ Husky Mobile Robot with DiffDriveController in Gazebo Simulator in ROS2
 ========================================================================
 
 
-**Goal:** Launch a Pan-Tilt Camera in Gazebo, learn how to controll two joints — pan (yaw) and tilt (pitch), and visualize image from camera in Rviz
+**Goal:** Launch a Husky mobile robot in Gazebo, simulate differential drive motion, and learn how to control the robot by publishing velocity commands from the terminal.
 
 **Tutorial level:** Basics
 
-This project demonstrates how to build and simulate a Pan-Tilt Camera system using ROS2 and Gazebo. The system features two controllable joints — pan (yaw) and tilt (pitch) — with a virtual RGB camera mounted on the pan-tilt system. Users can control the camera orientation by publishing joint commands and visualize the camera stream in real-time.
+This project demonstrates how to simulate the Husky robot in Gazebo using a differential drive controller. The robot is equipped with a DiffDriveController that enables realistic wheeled locomotion based on velocity commands (cmd_vel). Users can control the robot manually from the terminal or via ROS2 teleoperation tools while observing its motion in Gazebo and RViz.
 
-The pan-tilt camera setup is commonly used in real-world applications such as surveillance, robotic inspection, teleoperation, and vision-based tracking. This tutorial provides a scalable foundation that can be easily extended with advanced perception or control algorithms.
+The Husky platform is widely used in research and industry for autonomous navigation, mapping, and mobile robotics experiments. This tutorial provides a foundation for working with mobile robot simulation, controller configuration, and ROS2 control integration.
 
-By the end of this tutorial, you will be able to understand the basics of a pan-tilt camera system and how to make controllers to move the camera right/left and up/down directions. The main ROS2 concepts and skills covered in this tutorial are:
+By the end of this tutorial, you will understand the basics of differential drive control in ROS2, how to send velocity commands to a simulated robot, and how to integrate Gazebo with ROS2 control frameworks for mobile robot simulation. The main ROS2 concepts and skills covered in this tutorial are:
 
 ``URDF Modeling (Unified Robot Description Format)``
 URDF is an XML format used to describe the physical configuration of robots, including links, joints, sensors, and their relationships. In this tutorial, you'll learn to define a pan-tilt camera system's geometry and kinematics using URDF, enabling accurate simulation and visualization in Rviz.
@@ -34,13 +34,6 @@ Topics are the primary communication mechanism in ROS2, allowing nodes to publis
    These instructions are about the current `Gazebo <https://gazebosim.org/>`__ (previously known as Ignition), not  `Gazebo Classic <https://classic.gazebosim.org/>`__.
  
 
-How the Camera Works
---------------------
-
-In this tutorial RealSense camera is modeled as a set of URDF/Xacro links and joints. It is attached to the robot via fixed joints and includes a Gazebo camera sensor plugin. This setup allows the camera to generate and publish simulated image data (RGB, and optionally depth/pointcloud) during simulation, making it available to ROS nodes for visualization or processing.
-
-
-
 System Requirements
 -------------------
 
@@ -48,7 +41,7 @@ OS: Ubuntu 24.04
 
 ROS2:  `Jazzy <https://docs.ros.org/en/jazzy/Installation.html>`__
 
-Gazebo: Harmonic
+Gazebo: Jazzy
 
 Python 3.10+ (if you're adding custom control nodes)
 
